@@ -1,0 +1,20 @@
+---
+version: '3.8'
+services:
+
+  jmeter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "1099:1099"  # RMI port for JMeter
+      - "50000:50000"  # Additional port for JMeter
+    volumes:
+      - ./bin/entrypoint.sh:/entrypoint.sh
+      - jmeter-data:/opt/jmeter
+
+volumes:
+  jmeter:
+  jmeter-data:
